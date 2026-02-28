@@ -1,45 +1,54 @@
-number: '0123456789'
+number: "0123456789"
 symbol: "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ €"
-lang_char: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
-experiment_name: 'en_filtered'
-train_data: '/kaggle/input/datasets/priyankashah288/ocra-datasets/TrainingSet_v1'
-valid_data: '/kaggle/input/datasets/priyankashah288/ocra-datasets/TrainingSet_v1'
+lang_char: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+
+experiment_name: "en_filtered"
+
+train_data: "/kaggle/input/datasets/priyankashah288/ocra-datasets/TrainingSet_v1"
+valid_data: "/kaggle/input/datasets/priyankashah288/ocra-datasets/TrainingSet_v1"
+
 manualSeed: 41
 workers: 4
-batch_size: 512 #32
-num_iter: 20000
-valInterval: 3000
-saved_model: '' #'saved_models/en_filtered/iter_300000.pth'
+batch_size: 256
+num_iter: 1000
+valInterval: 100
+
+saved_model: ""
 FT: False
-optim: False # default is Adadelta
-lr: 1.
+optim: False
+lr: 0.2
 beta1: 0.9
 rho: 0.95
-eps: 0.00000001
+eps: 1e-08
 grad_clip: 5
-#Data processing
-select_data: 'train_data' # this is dataset folder in train_data
-batch_ratio: '1' 
+
+select_data: "train_data"
+batch_ratio: "1"
 total_data_usage_ratio: 1.0
-batch_max_length: 34 
+
+batch_max_length: 34
 imgH: 64
 imgW: 600
 rgb: False
-contrast_adjust: False
+contrast_adjust: 0.0
 sensitive: True
 PAD: True
-contrast_adjust: 0.0
 data_filtering_off: False
-# Model Architecture
-Transformation: 'None'
-FeatureExtraction: 'VGG'
-SequenceModeling: 'BiLSTM'
-Prediction: 'CTC'
+
+Transformation: "None"
+FeatureExtraction: "VGG"
+SequenceModeling: "BiLSTM"
+Prediction: "CTC"
+
 num_fiducial: 20
 input_channel: 1
 output_channel: 256
 hidden_size: 256
-decode: 'greedy'
+decode: "greedy"
 new_prediction: False
+
 freeze_FeatureFxtraction: False
 freeze_SequenceModeling: False
+
+character: "0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ €ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+num_class: 97   # <-- but update this based on len(character)+1
